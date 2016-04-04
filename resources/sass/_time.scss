@@ -1,0 +1,14 @@
+.time-list{
+	// cursor: pointer;
+	min-height: 100vh;
+	@include flexbox;
+	@include flex-wrap(wrap);
+	@include justify-content(center);
+	@include align-items(center);
+	@include align-content(center);
+	.time{
+		padding: 10px 20px;
+		margin: 10px;
+		@include borderRadius(2px);
+	}
+}

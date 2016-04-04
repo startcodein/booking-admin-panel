@@ -1,0 +1,210 @@
+@mixin fontFace($fontPath, $fontFile, $fontName, $weight: normal, $style: normal) {
+  @font-face {
+    font-family: $fontName;
+    src: url('#{$fontPath}/#{$fontFile}.eot'); // IE9 compat
+    src: url('#{$fontPath}/#{$fontFile}.eot?#iefix') format('embedded-opentype'), // IE8 and below
+         url('#{$fontPath}/#{$fontFile}.otf') format('opentype');
+         // url('#{$fontPath}/#{$fontFile}.woff') format('woff'), // standards
+         // url('#{$fontPath}/#{$fontFile}.ttf') format('truetype'), // Safari, Android, iOS
+         // url('#{$fontPath}/#{$fontFile}.svg##{$fontPath}') format('svg'); // legacy iOS
+    font-style: $style;
+    font-weight: $weight;
+  }
+}
+@mixin boxsizing{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+// Circle
+@mixin circle($circleSize){
+  width: $circleSize;
+  height: $circleSize;
+  -webkit-border-radius: $circleSize/2;
+     -moz-border-radius: $circleSize/2;
+          border-radius: $circleSize/2;
+}
+@mixin borderRadius($radius: 4px) {
+    -webkit-border-radius: $radius;
+       -moz-border-radius: $radius;
+            border-radius: $radius;
+}
+@mixin transition-transform($transition...) {
+  -webkit-transition: -webkit-transform $transition;
+     -moz-transition: -moz-transform $transition;
+       -o-transition: -o-transform $transition;
+          transition: transform $transition;
+}
+// @mixin transition($transitionProperty:all, $transitionTime:0.3s, $method:ease, $transitionDelay:0s) {
+//   -webkit-transition: $transitionProperty $transitionTime $method $transitionDelay;
+//      -moz-transition: $transitionProperty $transitionTime $method $transitionDelay;
+//       -ms-transition: $transitionProperty $transitionTime $method $transitionDelay;
+//        -o-transition: $transitionProperty $transitionTime $method $transitionDelay;
+//           transition: $transitionProperty $transitionTime $method $transitionDelay;
+// }
+@mixin multiTransition($transition) {
+ -webkit-transition: #{$transition};
+    -moz-transition: #{$transition};
+     -ms-transition: #{$transition};
+      -o-transition: #{$transition};
+         transition: #{$transition};
+}
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+      -ms-transform: translate($x, $y); // IE9 only
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+@mixin translateY($x) {
+  -webkit-transform: translateY($x);
+      -ms-transform: translateY($x); // IE9 only
+       -o-transform: translateY($x);
+          transform: translateY($x);
+}
+@mixin translateX($x) {
+  -webkit-transform: translateX($x);
+      -ms-transform: translateX($x); // IE9 only
+          transform: translateX($x);
+}
+@mixin rotate($deg) {
+    -webkit-transform: rotate(#{$deg}deg);
+       -moz-transform: rotate(#{$deg}deg);
+        -ms-transform: rotate(#{$deg}deg);
+         -o-transform: rotate(#{$deg}deg);
+}
+@mixin translate-scale($translateX:0, $translateY:0, $scaleX:1, $scaleY:1){
+  -webkit-transform: translate($translateX, $translateY) scale($scaleX, $scaleY);
+      -ms-transform: translate($translateX, $translateY) scale($scaleX, $scaleY);
+          transform: translate($translateX, $translateY) scale($scaleX, $scaleY);
+}
+@mixin scale($x:0, $y:0){
+  -webkit-transform: scale($x, $y);
+      -ms-transform: scale($x, $y);
+          transform: scale($x, $y);
+}
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow: $shadow; // iOS <4.3 & Android <4.1
+          box-shadow: $shadow;
+}
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}
+@mixin container-fixed($gutter: $grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
+}
+
+// Animation
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    animation:         $animations;
+}
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+// font smoothing
+@mixin font-smoothing($value: on) {
+    @if $value == on {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    @else {
+        -webkit-font-smoothing: subpixel-antialiased;
+        -moz-osx-font-smoothing: auto;
+    }
+}
+@mixin button-variant($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+
+  &:focus,
+  &.focus {
+    color: $color;
+    background-color: darken($background, 10%);
+        // border-color: darken($border, 25%);
+  }
+  &:hover {
+    color: $color;
+    background-color: darken($background, 10%);
+        // border-color: darken($border, 12%);
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $color;
+    background-color: darken($background, 10%);
+        // border-color: darken($border, 12%);
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: $color;
+      background-color: darken($background, 17%);
+          // border-color: darken($border, 25%);
+    }
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: $background;
+          border-color: $border;
+    }
+  }
+
+  .badge {
+    color: $background;
+    background-color: $color;
+  }
+}
+@mixin x-placeholder {
+  &::-webkit-input-placeholder {
+    @content // Chrome, Safari, Opera
+  }
+  &::-moz-placeholder {
+    @content // Firefox 19+
+  }
+  &:-ms-input-placeholder {
+    @content // IE 10+
+  }
+}
+
+
+

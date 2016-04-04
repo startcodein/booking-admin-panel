@@ -1,0 +1,53 @@
+@import "variables";
+@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+@import "mixins";
+@import "flex-mixin";
+@import "time";
+
+
+
+html{
+  height: 100vh;
+}
+body{
+  min-height: 100vh;
+}
+.box{
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+    border: 1px solid #DDD;
+    background: #fff;
+}
+
+
+
+
+@import 'angular-bootstrap-calendar';
+.cal-month-box [class*=cal-cell], 
+.cal-year-box [class*=span]{
+	min-height: 80px;
+	/*border-right: 1px solid #bbbfcb;*/
+}
+span[data-cal-date]{
+	margin-top: 10px;
+	margin-right: 10px;
+	font-size: 18px;
+}
+.cal-month-day{
+	height: 80px;
+}
+
+// Calendar left & right border
+.cal-month-box{
+	border-left: none;
+}
+.cal-before-eventlist{
+	.cal-cell:last-child{
+		border-right: none;
+	}
+}
+// hide week info
+#cal-week-box {
+  display: none;
+}
