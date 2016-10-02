@@ -6,7 +6,7 @@ angular.module('myApp', ['ui.router','ui.bootstrap', 'mwl.calendar', 'angularMom
 	$stateProvider
 		.state('/', {
 			url: "/",
-			templateUrl: "home.html",
+			templateUrl: "dashboard.html",
             controller: 'homeCtrl',
 		})
 		.state('time', {
