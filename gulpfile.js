@@ -6,6 +6,7 @@ var mqpacker = require('css-mqpacker');
 var cssnano = require('cssnano');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
+var notify = require("gulp-notify");
 
 var config = {
 	sassDir: './resources/sass',
@@ -22,7 +23,10 @@ gulp.task('styles', function () {
         // cssnano,
     ];
     return gulp.src(config.sassDir + '/app.scss')
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass())
+        .on("error", notify.onError(function (error) {
+          return "Error: " + error.message;
+        }))
         .pipe(postcss(processors))
         .pipe(gulp.dest('./public/css'))
         .pipe(livereload());
