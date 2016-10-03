@@ -4,15 +4,14 @@ var sass = require('gulp-sass');
 var autoprefixer = require('autoprefixer');
 var mqpacker = require('css-mqpacker');
 var cssnano = require('cssnano');
-
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 
 var config = {
 	sassDir: './resources/sass',
 	jsPath: './resources/scripts',
-	// fontDir: './resources/fonts',
-	// imageDir: './resources/images',
+	fontDir: './resources/fonts',
+	imageDir: './resources/images',
 	bowerDir: './bower_components'
 };
 
