@@ -9,3 +9,23 @@ body{
     flex: 1;
   }
 }
+
+.login-form{
+    position: relative;
+    .form-control{
+      padding-right: 30px;
+
+      &:focus{
+        + i{
+          color: $brand-primary;
+        }
+      }
+
+      + i{
+        color: #888;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+      }
+    }
+}
