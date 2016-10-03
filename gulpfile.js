@@ -20,7 +20,7 @@ gulp.task('styles', function () {
     var processors = [
         autoprefixer({browsers: ['last 15 versions'], cascade: false}),
         mqpacker,
-        // cssnano,
+        cssnano,
     ];
     return gulp.src(config.sassDir + '/app.scss')
         .pipe(sass())
@@ -43,6 +43,7 @@ gulp.task('files', function() {
 gulp.task('connect', function() {
 	connect.server({
 		root: 'public',
+    port: 3000,
 		livereload: true,
     debug: true
 	});
