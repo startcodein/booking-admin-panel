@@ -7,6 +7,7 @@ var cssnano = require('cssnano');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
 var notify = require("gulp-notify");
+var mainBowerFiles = require('main-bower-files');
 
 var config = {
 	sassDir: './resources/sass',
@@ -15,6 +16,15 @@ var config = {
 	imageDir: './resources/images',
 	bowerDir: './bower_components'
 };
+
+// TODO bower install from bower.json and add filter for js
+gulp.task('bower', function(){
+  return gulp.src(mainBowerFiles())
+		.on("error", notify.onError(function (error) {
+			return "Error: " + error.message;
+		}))
+		.pipe(gulp.dest('./public/js'))
+});
 
 gulp.task('styles', function () {
     var processors = [
