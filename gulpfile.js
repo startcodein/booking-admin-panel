@@ -17,9 +17,9 @@ var config = {
 	bowerDir: './bower_components'
 };
 
-// TODO bower install from bower.json and add filter for js
+// TODO bower install from bower.json
 gulp.task('bower', function(){
-  return gulp.src(mainBowerFiles())
+  return gulp.src(mainBowerFiles('**/*.js'))
 		.on("error", notify.onError(function (error) {
 			return "Error: " + error.message;
 		}))
