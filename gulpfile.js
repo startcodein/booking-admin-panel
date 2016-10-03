@@ -5,6 +5,9 @@ var autoprefixer = require('autoprefixer');
 var mqpacker = require('css-mqpacker');
 var cssnano = require('cssnano');
 
+var connect = require('gulp-connect');
+var livereload = require('gulp-livereload');
+
 var config = {
 	sassDir: './resources/sass',
 	jsPath: './resources/scripts',
@@ -13,14 +16,39 @@ var config = {
 	bowerDir: './bower_components'
 };
 
-gulp.task('css', function () {
+gulp.task('styles', function () {
     var processors = [
         autoprefixer({browsers: ['last 15 versions'], cascade: false}),
         mqpacker,
-        cssnano,
+        // cssnano,
     ];
     return gulp.src(config.sassDir + '/app.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(postcss(processors))
-        .pipe(gulp.dest('./public/css'));
+        .pipe(gulp.dest('./public/css'))
+        .pipe(livereload());
 });
+
+gulp.task('files', function() {
+    return gulp.src([
+	    	'resources/**.html'
+    	])
+        .pipe(gulp.dest('./public'))
+		.pipe(livereload());
+});
+
+gulp.task('connect', function() {
+	connect.server({
+		root: 'public',
+		livereload: true,
+    debug: true
+	});
+});
+
+gulp.task('watch', function() {
+	livereload.listen();
+	gulp.watch('resources/**.html', ['files']);
+	gulp.watch(config.sassDir + '/*.scss', ['styles']);
+});
+
+gulp.task('default', ['styles', 'watch', 'connect']);

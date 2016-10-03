@@ -1,15 +1,16 @@
 @import "variables";
-@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+// @import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 @import "mixins";
 @import "flex-mixin";
-@import "time";
+// @import "time";
 
 
 html{
   height: 100vh;
-  background-color: $brand-primary;
 }
 body{
   min-height: 100vh;
   display: flex;
+  background-color: $brand-primary;
+  color: skyblue;
 }
