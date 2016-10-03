@@ -3,14 +3,5 @@
 // @import "mixins";
 // @import "flex-mixin";
 // @import "time";
-
-
-html{
-  height: 100vh;
-}
-body{
-  min-height: 100vh;
-  display: flex;
-  background-color: $brand-primary;
-  color: skyblue;
-}
+@import "structure";
+@import "login";

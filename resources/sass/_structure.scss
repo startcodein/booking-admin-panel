@@ -1,0 +1,15 @@
+html{
+	height: 100vh;
+}
+
+body{
+  min-height: 100vh;
+}
+
+.form-control{
+	box-shadow: none;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	&:focus{
+		box-shadow: none;
+	}
+}
