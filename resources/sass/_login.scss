@@ -1,0 +1,11 @@
+body{
+  &.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-color: $brand-primary;
+  }
+  .login-window{
+    flex: 1;
+  }
+}
