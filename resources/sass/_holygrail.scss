@@ -4,6 +4,7 @@ html{
 
 body{
   min-height: 100vh;
+	background-color: $body-bg;
 }
 
 body,
@@ -18,15 +19,12 @@ footer{
 	background: rgba(147,128,108,0.1);
 }
 
-main{
-	background: honeydew;
-}
-
-.side-nav {
+nav {
+	width: 250px;
   order: -1;
-	background-color: tomato;
 }
 .right-list {
+	display: none;
 	background-color: deepskyblue;
 }
 
@@ -38,7 +36,7 @@ main{
   main {
     flex: 1;
   }
-  .side-nav, .right-list {
-    flex: 0 0 12em;
+  nav, .right-list {
+    // flex: 0 0 12em;
   }
 }
