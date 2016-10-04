@@ -1,0 +1,44 @@
+html{
+	height: 100vh;
+}
+
+body{
+  min-height: 100vh;
+}
+
+body,
+.container-body {
+  display: flex;
+  flex-direction: column;
+}
+
+header,
+footer{
+	flex: none;
+	background: rgba(147,128,108,0.1);
+}
+
+main{
+	background: honeydew;
+}
+
+.side-nav {
+  order: -1;
+	background-color: tomato;
+}
+.right-list {
+	background-color: deepskyblue;
+}
+
+@media (min-width: $screen-sm-min) {
+  .container-body {
+    flex-direction: row;
+    flex: 1;
+  }
+  main {
+    flex: 1;
+  }
+  .side-nav, .right-list {
+    flex: 0 0 12em;
+  }
+}
