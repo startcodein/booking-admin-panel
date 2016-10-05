@@ -29,7 +29,7 @@ gulp.task('bower', function(){
 
 gulp.task('index', function () {
 	var jsFIles = mainBowerFiles('**/*.js');
-	jsFIles.push(config.jsPath + '/*.js');
+	jsFIles.push(config.jsPath + '/**/*.js');
 	return gulp.src('./resources/index.html')
 	.pipe(inject(
 		gulp.src(jsFIles, { read: false }),
