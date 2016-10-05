@@ -21,6 +21,7 @@
     "angular-ui-router": "^0.2.18",
     "angular-bootstrap-calendar": "^0.19.6",
     "angular-moment": "^0.10.3",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "angular": "^1.5.8"
   }
 }
