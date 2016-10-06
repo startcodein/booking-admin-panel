@@ -35,14 +35,6 @@ gulp.task('index', function () {
 	    gulp.src(config.jsPath + '/**/*.js', {read: false})
 	  )))
 	  .pipe(gulp.dest('./public'));
-
-	// var jsFIles = mainBowerFiles('**/*.js');
-	// jsFIles.push(config.jsPath + '/**/*.js');
-	// return gulp.src('./resources/index.html')
-	// .pipe(inject(
-		// gulp.src(jsFIles, { read: false }),
-		// { relative: true }))
-		// .pipe(gulp.dest('./public'));
 });
 
 gulp.task('styles', function () {
