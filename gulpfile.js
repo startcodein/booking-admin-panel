@@ -9,6 +9,7 @@ var livereload = require('gulp-livereload');
 var notify = require("gulp-notify");
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
+var es = require('event-stream');
 
 var config = {
 	sassDir: './resources/assets/sass',
@@ -28,14 +29,13 @@ gulp.task('bower', function(){
 });
 
 gulp.task('index', function () {
-	var jsFIles = mainBowerFiles('**/*.js');
-	jsFIles.push(config.jsPath + '/**/*.js');
 	return gulp.src('./resources/index.html')
-	.pipe(inject(
-		gulp.src(jsFIles, { read: false }),
-		{ relative: true }))
-		.pipe(gulp.dest('./public'));
-	});
+		.pipe(inject(gulp.src(mainBowerFiles('**/*.js'), {read: false}), {name: 'bower'}))
+	  .pipe(inject(es.merge(
+	    gulp.src(config.jsPath + '/**/*.js', {read: false})
+	  )))
+	  .pipe(gulp.dest('./public'));
+});
 
 gulp.task('styles', function () {
     var processors = [
