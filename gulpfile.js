@@ -55,12 +55,12 @@ gulp.task('styles', function () {
 
 gulp.task('icons', function() {
     return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
-        .pipe(gulp.dest('./public/fonts'));
+        .pipe(gulp.dest('./assets/fonts'));
 });
 
 gulp.task('files', function() {
     return gulp.src([
-	    	'resources/**.html'
+	    	'resources/app/**.html'
     	])
         .pipe(gulp.dest('./public'))
 		.pipe(livereload());
@@ -68,7 +68,7 @@ gulp.task('files', function() {
 
 gulp.task('connect', function() {
 	connect.server({
-		root: 'public',
+		// root: 'public',
     port: 3000,
 		livereload: true,
     debug: true
@@ -81,4 +81,4 @@ gulp.task('watch', function() {
 	gulp.watch(config.sassDir + '/*.scss', ['styles']);
 });
 
-gulp.task('default', ['styles', 'watch', 'connect']);
+gulp.task('default', ['files' ,'styles' ,'index' ,'watch', 'connect']);
