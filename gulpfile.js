@@ -10,10 +10,13 @@ var notify = require("gulp-notify");
 var mainBowerFiles = require('main-bower-files');
 var inject = require('gulp-inject');
 var es = require('event-stream');
+var angularFilesort = require('gulp-angular-filesort');
+var flatten = require('gulp-flatten');
 
 var config = {
 	sassDir: './resources/assets/sass',
 	jsPath: './resources/app',
+	htmlPath: './resources/app',
 	fontDir: './resources/fonts',
 	imageDir: './resources/images',
 	bowerDir: './bower_components'
@@ -32,9 +35,9 @@ gulp.task('index', function () {
 	return gulp.src('./resources/index.html')
 		.pipe(inject(gulp.src(mainBowerFiles('**/*.js'), {read: false}), {name: 'bower'}))
 	  .pipe(inject(es.merge(
-	    gulp.src(config.jsPath + '/**/*.js', {read: false})
+			gulp.src(config.jsPath + '/**/*.js').pipe(angularFilesort())
 	  )))
-	  .pipe(gulp.dest('./public'));
+	  .pipe(gulp.dest('./'));
 });
 
 gulp.task('styles', function () {
@@ -55,14 +58,13 @@ gulp.task('styles', function () {
 
 gulp.task('icons', function() {
     return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
-        .pipe(gulp.dest('./assets/fonts'));
+        .pipe(gulp.dest('./public/fonts'));
 });
 
 gulp.task('files', function() {
-    return gulp.src([
-	    	'resources/app/**.html'
-    	])
-        .pipe(gulp.dest('./public'))
+	return gulp.src(config.htmlPath +'/**/**.html')
+		.pipe(flatten())
+		.pipe(gulp.dest('./public'))
 		.pipe(livereload());
 });
 
@@ -77,8 +79,9 @@ gulp.task('connect', function() {
 
 gulp.task('watch', function() {
 	livereload.listen();
-	gulp.watch('resources/**.html', ['files']);
+	gulp.watch(config.htmlPath + '/**/**.html', ['files']);
 	gulp.watch(config.sassDir + '/*.scss', ['styles']);
 });
 
+gulp.task('install', ['index']);
 gulp.task('default', ['files' ,'styles' ,'index' ,'watch', 'connect']);
