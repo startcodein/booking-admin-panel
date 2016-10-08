@@ -1,5 +1,38 @@
 .side-nav{
   padding-top: 30px;
   background-color: $nav-bg;
-  color: $nav-color;
+
+  h3{
+    color: $white;
+  }
+
+  li {
+    &:not(:first-child){
+      border-top: 1px solid lighten($nav-bg, 2%);
+    }
+    &.active,
+    &:hover{
+      a{
+        color: $white;
+        background-color: darken($nav-bg, 5%);
+      }
+      i{
+        color: $brand-primary;
+      }
+    }
+
+    a{
+      font-weight: 600;
+      color: $nav-color;
+      padding-left: 20px;
+
+      i{
+        width: 30px;
+        margin-right: 5px;
+        text-align: center;
+        font-size: 20px;
+        color: lighten($nav-bg, 15%);
+      }
+    }
+  }
 }
