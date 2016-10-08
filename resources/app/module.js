@@ -1,3 +1,3 @@
 console.log("kooy");
 angular
-    .module('app', []);
+    .module('app', ['ui.router']);
