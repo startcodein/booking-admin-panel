@@ -9,10 +9,20 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'public/dashboard.html',
       controller: 'dashboardController'
     })
-    .state('kooy', {
-      url: '/kooy',
-      templateUrl: 'public/kooy.html',
-      controller: 'kooyController'
-    });
+    .state('availability', {
+      url: '/availability',
+      templateUrl: 'public/availability.html',
+      controller: 'availabilityController'
+    })
+    .state('booking', {
+      url: '/booking',
+      templateUrl: 'public/booking.html',
+      controller: 'bookingController'
+    })
+    .state('settings', {
+      url: '/settings',
+      templateUrl: 'public/settings.html',
+      controller: 'settingsController'
+    })
     $urlRouterProvider.otherwise('/dashboard');
 }
