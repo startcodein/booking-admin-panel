@@ -11,10 +11,7 @@
 	<header></header>
   <div class="container-body">
     <main>
-			<div ng-include src="'public/dashboard.html'"></div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum officia, optio distinctio. Incidunt necessitatibus quas odio sint ratione numquam cumque, sequi quasi tempore, ea, perferendis rerum et libero dicta excepturi!</p>
-			<h1>{{3 + 9}}</h1>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi fugit saepe atque modi esse cum quasi dignissimos? Est sint assumenda harum nobis eum reiciendis inventore sed dolorum. Amet, quas, exercitationem.</p>
+			<ui-view></ui-view>
     </main>
 
     <nav class="side-nav">
@@ -24,12 +21,10 @@
 					<h3>Mo Athimannil</h3>
 				</figcaption>
 			</figure>
-
 			<ul class="nav">
-				<li>maanu 1</li>
-				<li>maanu 2</li>
-				<li>maanu 3</li>
-			</ul>
+	        <li><a ui-sref="dashboard">Home</a></li>
+	        <li><a ui-sref="kooy">About</a></li>
+	    </ul>
     </nav>
 
     <aside class="right-list">

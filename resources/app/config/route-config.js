@@ -2,10 +2,17 @@ angular
   .module('app')
   .config(config);
 
-function config($routeProvider) {
-  $routeProvider
-    .when('/avengers', {
-      templateUrl: 'avengers.html'
+function config($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('dashboard', {
+      url: '/dashboard',
+      templateUrl: 'public/dashboard.html',
+      controller: 'dashboardController'
     })
-    // .otherwise
+    .state('kooy', {
+      url: '/kooy',
+      templateUrl: 'public/kooy.html',
+      controller: 'kooyController'
+    });
+    $urlRouterProvider.otherwise('/dashboard');
 }

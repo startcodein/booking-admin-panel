@@ -1,1 +1,7 @@
-console.log("B mate");
+angular
+    .module('app')
+    .controller('kooyController', KooyController);
+
+function KooyController() {
+  console.log("kooy controller");
+}
