@@ -5,3 +5,11 @@
 		box-shadow: none;
 	}
 }
+
+.box{
+	border: 1px solid $box-border;
+	padding: 10px;
+	// position: relative;
+	background: $white;
+	margin: 0 0 10px;
+}

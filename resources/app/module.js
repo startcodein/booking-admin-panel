@@ -1,3 +1,5 @@
-console.log("kooy");
 angular
-    .module('app', ['ui.router']);
+    .module('app', [
+      'mwl.calendar',
+      'ui.router'
+    ]);
