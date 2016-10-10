@@ -2,7 +2,7 @@ angular
     .module('app')
     .controller('availabilityController', availabilityController);
 
-function availabilityController() {
+function availabilityController(moment) {
   this.calendarView = 'month';
   this.viewDate = new Date();
 
@@ -11,11 +11,13 @@ function availabilityController() {
   this.mytime = {};
 
   this.addEvent = function() {
-    this.events.push({
-      title: 'Monday',
-      startsAt: moment().startOf('monday').toDate(),
-      endsAt: moment().endOf('monday').toDate(),
-    });
+    this.events.push(this.mytime);
+    this.mytime = {};
+    // this.events.push({
+      // title: 'Monday',
+      // startsAt: moment().startOf('monday').toDate(),
+      // endsAt: moment().endOf('monday').toDate(),
+    // });
     console.log(this.events);
   };
 
@@ -44,7 +46,14 @@ function availabilityController() {
   };
   this.updateChangeStart = function () {
     // TODO update end-time if start-time more then end-time
-    this.mytime.endsAt = this.mytime.startsAt;
+    // this.mytime.endsAt = this.mytime.startsAt;
+    // console.log(this.mytime.endsAt);
+      if(moment(this.mytime.startsAt).isSameOrAfter(moment(this.mytime.endsAt))){
+        console.log("event can not start after exceed");
+      }else{
+        console.log("thudangi kayinj avasanikunu");
+      }
+    //console.log(moment('2010-10-20').isSameOrBefore(moment('2010-10-21')));
   };
   this.updateChangeEnd = function () {
     // TODO set min="" to same start-time
