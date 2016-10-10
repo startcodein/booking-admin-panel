@@ -1,7 +1,7 @@
 <h2><i class="fa fa-tags"></i> Availability</h2>
 <h3>{{availtrl.calendarView}}</h3><!--  -->
 
-<div class="row form-group">
+<div class="row form-group hide">
   <div class="col-md-12">
     <!-- <h3 class="text-center">{{calendarTitle}}</h3> -->
   </div>
@@ -43,7 +43,32 @@
 </div>
 
 <div class="row">
-  <div class="col-md-12">
+<div class="col-sm-4">
+  <div
+    uib-timepicker
+    minute-step="5"
+    ng-model="availtrl.mytime"
+    ></div>
+    <!-- ng-change="changed()" -->
+</div>
+  <div class="col-sm-4">
+    <pre class="alert alert-info">Time is: {{availtrl.mytime}}</pre>
+  </div>
+  <div class="col-sm-4">
+    <button
+      type="button"
+      name="button"
+      class="btn btn-primary"
+      ng-click="availtrl.addEvent()"
+    >Add</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <pre>{{availtrl.events | json}}</pre>
+  </div>
+  <div class="col-md-8">
     <div class="box">
 
       <mwl-calendar
@@ -52,9 +77,10 @@
           events="availtrl.events"
           view-title="calendarTitle"
           on-timespan-click = "availtrl.clickOnEvent(calendarCell)"
-          slide-box-disabled="true"
           >
       </mwl-calendar>
+      <!-- slide-box-disabled="true" -->
+
       <!-- on-view-change-click="false" -->
       <!-- on-event-click="availtrl.clickOnEvent()" -->
 

@@ -1,5 +1,6 @@
 angular
     .module('app', [
       'mwl.calendar',
-      'ui.router'
+      'ui.router',
+      'ui.bootstrap'
     ]);

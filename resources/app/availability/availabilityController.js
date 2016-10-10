@@ -1,11 +1,11 @@
-
 angular
     .module('app')
     .controller('availabilityController', availabilityController);
 
 function availabilityController() {
-  this.calendarView = 'week';
+  this.calendarView = 'month';
   this.viewDate = new Date();
+
   this.events = [
     // {
     //   title: 'My event title', // The title of the event
@@ -31,9 +31,31 @@ function availabilityController() {
     // }
   ];
 
+  this.mytime = new Date();
+
+  this.addEvent = function() {
+    this.events.push({
+      title: 'Monday',
+      startsAt: moment().startOf('monday').toDate(),
+      endsAt: moment().endOf('monday').toDate(),
+      // color: calendarConfig.colorTypes.important,
+    });
+
+    console.log(this.events);
+  };
+
   this.clickOnEvent = function (calendarCell) {
+    console.clear();
+    console.log(calendarCell.date.format('dddd'));
     // alert("kooy");
-    console.log(calendarCell.events);
+
+    // console.log(calendarCell);
+    // console.log(calendarCell.date);
+    // console.log(moment(calendarCell.date).format());
+    // console.log(moment(calendarCell.date).format('dddd'));
+    // console.log(moment(calendarCell.date).utc().format('MMMM Do YYYY, h:mm:ss a'));
+    // console.log(moment(calendarCell.date).format('MMMM Do YYYY, h:mm:ss a'));
+    // console.log(moment(calendarCell.date).local().format('MMMM Do YYYY, h:mm:ss a'));
   }
 
   console.log("availability controller");
