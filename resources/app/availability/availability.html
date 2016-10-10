@@ -1,5 +1,6 @@
 <h2><i class="fa fa-tags"></i> Availability</h2>
-<h3>{{availtrl.calendarView}}</h3><!--  -->
+<!-- <h3>{{availtrl.calendarView}}</h3> --><!--  -->
+<h3 class="text-center">kooy {{availtrl.startOption.endTime | date:'M/d/yyyy HH:mm'}}</h3>
 
 <div class="row form-group hide">
   <div class="col-md-12">
@@ -43,16 +44,38 @@
 </div>
 
 <div class="row">
-<div class="col-sm-4">
-  <div
-    uib-timepicker
-    minute-step="5"
-    ng-model="availtrl.mytime"
-    ></div>
-    <!-- ng-change="changed()" -->
-</div>
   <div class="col-sm-4">
-    <pre class="alert alert-info">Time is: {{availtrl.mytime}}</pre>
+    <div class="row">
+      <div class="col-sm-6">
+        <label>Start At:</label>
+        <div
+            uib-timepicker
+            minute-step="availtrl.startOption.mstep"
+            ng-model="availtrl.mytime.startsAt"
+            ng-change="availtrl.updateChangeStart()"
+            show-meridian="false"
+            min="availtrl.startOption.startTime"
+            max="availtrl.startOption.endTime"
+          ></div>
+      </div>
+      <div class="col-sm-6">
+        <label>End At:</label>
+        <div
+            uib-timepicker
+            minute-step="availtrl.startOption.mstep"
+            ng-model="availtrl.mytime.endsAt"
+            ng-change="availtrl.updateChangeEnd()"
+            show-meridian="false"
+            min=""
+          ></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <pre class="alert alert-info"> {{availtrl.mytime.title}} </pre>
+    <pre class="alert alert-info"> {{availtrl.mytime.startsAt | date:'M/d/yyyy HH:mm' }}</pre>
+    <pre class="alert alert-info"> {{availtrl.mytime.endsAt | date:'M/d/yyyy HH:mm'}} </pre>
+    <pre class="alert alert-info"> {{availtrl.mytime | json}} </pre>
   </div>
   <div class="col-sm-4">
     <button
