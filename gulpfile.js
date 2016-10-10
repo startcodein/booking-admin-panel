@@ -31,6 +31,11 @@ gulp.task('bower', function(){
 		.pipe(gulp.dest('./public/js'))
 });
 
+gulp.task('icons', function() {
+    return gulp.src(config.bowerDir + '/font-awesome/fonts/**.*')
+        .pipe(gulp.dest('./public/fonts'));
+});
+
 gulp.task('index', function () {
 	return gulp.src('./resources/index.html')
 		.pipe(inject(gulp.src(mainBowerFiles('**/*.js'), {read: false}), {name: 'bower'}))
@@ -83,5 +88,5 @@ gulp.task('watch', function() {
 	gulp.watch(config.sassDir + '/*.scss', ['styles']);
 });
 
-gulp.task('install', ['index']);
+gulp.task('install', ['icons', 'index']);
 gulp.task('default', ['files' ,'styles' ,'index' ,'watch', 'connect']);

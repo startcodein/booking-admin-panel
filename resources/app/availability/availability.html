@@ -1,1 +1,89 @@
 <h2><i class="fa fa-tags"></i> Availability</h2>
+<h3>{{availtrl.calendarView}}</h3><!--  -->
+
+<div class="row form-group hide">
+  <div class="col-md-12">
+    <!-- <h3 class="text-center">{{calendarTitle}}</h3> -->
+  </div>
+
+  <div class="col-sm-6">
+    <div class="btn-group">
+      <button
+        class="btn btn-primary"
+        mwl-date-modifier
+        date="availtrl.viewDate"
+        decrement="availtrl.calendarView">
+        Previous
+      </button>
+      <button
+        class="btn btn-default"
+        mwl-date-modifier
+        date="availtrl.viewDate"
+        set-to-today>
+        Today
+      </button>
+      <button
+        class="btn btn-primary"
+        mwl-date-modifier
+        date="availtrl.viewDate"
+        increment="availtrl.calendarView">
+        Next
+      </button>
+    </div>
+  </div>
+
+  <div class="col-sm-6 text-right">
+    <div class="btn-group">
+      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'year'">Year</label>
+      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'month'">Month</label>
+      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'week'">Week</label>
+      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'day'">Day</label>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<div class="col-sm-4">
+  <div
+    uib-timepicker
+    minute-step="5"
+    ng-model="availtrl.mytime"
+    ></div>
+    <!-- ng-change="changed()" -->
+</div>
+  <div class="col-sm-4">
+    <pre class="alert alert-info">Time is: {{availtrl.mytime}}</pre>
+  </div>
+  <div class="col-sm-4">
+    <button
+      type="button"
+      name="button"
+      class="btn btn-primary"
+      ng-click="availtrl.addEvent()"
+    >Add</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <pre>{{availtrl.events | json}}</pre>
+  </div>
+  <div class="col-md-8">
+    <div class="box">
+
+      <mwl-calendar
+          view="availtrl.calendarView"
+          view-date="availtrl.viewDate"
+          events="availtrl.events"
+          view-title="calendarTitle"
+          on-timespan-click = "availtrl.clickOnEvent(calendarCell)"
+          >
+      </mwl-calendar>
+      <!-- slide-box-disabled="true" -->
+
+      <!-- on-view-change-click="false" -->
+      <!-- on-event-click="availtrl.clickOnEvent()" -->
+
+    </div>
+  </div>
+</div>

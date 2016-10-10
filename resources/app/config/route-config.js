@@ -12,7 +12,8 @@ function config($stateProvider, $urlRouterProvider) {
     .state('availability', {
       url: '/availability',
       templateUrl: 'public/availability.html',
-      controller: 'availabilityController'
+      controller: 'availabilityController',
+      controllerAs: "availtrl"
     })
     .state('booking', {
       url: '/booking',
@@ -24,5 +25,5 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'public/settings.html',
       controller: 'settingsController'
     })
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/availability');
 }
