@@ -1,44 +1,58 @@
 <h2><i class="fa fa-tags"></i> Availability</h2>
-<!-- <h3>{{availtrl.calendarView}}</h3> --><!--  -->
-<h3 class="text-center">kooy {{availtrl.startOption.endTime | date:'M/d/yyyy HH:mm'}}</h3>
-
-<div class="row form-group hide">
-  <div class="col-md-12">
-    <!-- <h3 class="text-center">{{calendarTitle}}</h3> -->
-  </div>
-
-  <div class="col-sm-6">
-    <div class="btn-group">
-      <button
-        class="btn btn-primary"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        decrement="availtrl.calendarView">
-        Previous
-      </button>
-      <button
-        class="btn btn-default"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        set-to-today>
-        Today
-      </button>
-      <button
-        class="btn btn-primary"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        increment="availtrl.calendarView">
-        Next
-      </button>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="col-sm-12">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Day</label>
+          <select class="form-control">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <div
+              uib-timepicker
+              minute-step="availtrl.startOption.mstep"
+              ng-model="availtrl.mytime.startsAt"
+              ng-change="availtrl.updateChangeStart()"
+              show-meridian="false"
+              min="availtrl.startOption.startTime"
+              max="availtrl.startOption.endTime"
+            ></div>
+        </div>
+        <div class="form-group">
+          <div
+              uib-timepicker
+              minute-step="availtrl.startOption.mstep"
+              ng-model="availtrl.mytime.endsAt"
+              ng-change="availtrl.updateChangeEnd()"
+              show-meridian="false"
+              min=""
+            ></div>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
     </div>
   </div>
 
-  <div class="col-sm-6 text-right">
-    <div class="btn-group">
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'year'">Year</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'month'">Month</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'week'">Week</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'day'">Day</label>
+  <div class="col-sm-4" ng-repeat="(scheduleKeys, scheduleTimes) in availtrl.schedules">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">{{scheduleKeys}}</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-unstyled">
+          <li ng-repeat="time in scheduleTimes">
+            {{time.start}} - {{time.end}}
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
@@ -47,66 +61,13 @@
   <div class="col-sm-4">
     <div class="row">
       <div class="col-sm-6">
-        <label>Start At:</label>
-        <div
-            uib-timepicker
-            minute-step="availtrl.startOption.mstep"
-            ng-model="availtrl.mytime.startsAt"
-            ng-change="availtrl.updateChangeStart()"
-            show-meridian="false"
-            min="availtrl.startOption.startTime"
-            max="availtrl.startOption.endTime"
-          ></div>
-      </div>
+
       <div class="col-sm-6">
-        <label>End At:</label>
-        <div
-            uib-timepicker
-            minute-step="availtrl.startOption.mstep"
-            ng-model="availtrl.mytime.endsAt"
-            ng-change="availtrl.updateChangeEnd()"
-            show-meridian="false"
-            min=""
-          ></div>
+
       </div>
     </div>
   </div>
   <div class="col-sm-4">
-    <pre class="alert alert-info"> {{availtrl.mytime.title}} </pre>
-    <pre class="alert alert-info"> {{availtrl.mytime.startsAt | date:'M/d/yyyy HH:mm' }}</pre>
-    <pre class="alert alert-info"> {{availtrl.mytime.endsAt | date:'M/d/yyyy HH:mm'}} </pre>
-    <pre class="alert alert-info"> {{availtrl.mytime | json}} </pre>
-  </div>
-  <div class="col-sm-4">
-    <button
-      type="button"
-      name="button"
-      class="btn btn-primary"
-      ng-click="availtrl.addEvent()"
-    >Add</button>
-  </div>
-</div>
 
-<div class="row">
-  <div class="col-sm-4">
-    <pre>{{availtrl.events | json}}</pre>
-  </div>
-  <div class="col-md-8">
-    <div class="box">
-
-      <mwl-calendar
-          view="availtrl.calendarView"
-          view-date="availtrl.viewDate"
-          events="availtrl.events"
-          view-title="calendarTitle"
-          on-timespan-click = "availtrl.clickOnEvent(calendarCell)"
-          >
-      </mwl-calendar>
-      <!-- slide-box-disabled="true" -->
-
-      <!-- on-view-change-click="false" -->
-      <!-- on-event-click="availtrl.clickOnEvent()" -->
-
-    </div>
   </div>
 </div>
