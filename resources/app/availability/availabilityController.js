@@ -1,8 +1,12 @@
+(function() {
+    'use strict';
+
 angular
     .module('app')
     .controller('availabilityController', availabilityController);
 
-function availabilityController($uibModal) {
+function availabilityController($uibModal, $log) {
+  this.items = ['item1', 'item2', 'item3'];
   this.schedules = {
     "MON":[{"start":"08:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
     "TUE":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
@@ -13,11 +17,6 @@ function availabilityController($uibModal) {
     "Sun":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
   }
 
-  this.items = ['item1', 'item2', 'item3'];
-  // this.addTime = function (theDay) {
-    // console.log(theDay);
-    // this.schedules[theDay].push({"start":"08:00:00","end":"10:30:00"});
-  // }
   this.editTime = function (theDay) {
     console.log(theDay);
     // this.schedules[theDay].push({"start":"08:00:00","end":"10:30:00"});
@@ -28,24 +27,29 @@ function availabilityController($uibModal) {
     var index = this.schedules[theWeek].indexOf(theDay);
     this.schedules[theWeek].splice(index,1);
   }
-  this.addTime = function (size, parentSelector) {
-    // var parentElem = parentSelector ?
-      // angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+
+  this.addTime = function () {
+    var $ctrl = this;
     var modalInstance = $uibModal.open({
-      // animation: $ctrl.animationsEnabled,
-      // ariaLabelledBy: 'modal-title',
-      // ariaDescribedBy: 'modal-body',
       templateUrl: 'myModalContent.html',
       controller: 'availabilityModalController',
-      controllerAs: 'availModCtrl',
-      // size: size,
-      // appendTo: parentElem,
+      controllerAs: '$ctrl',
       resolve: {
         items: function () {
-          // return this.items;
-        }
+          return $ctrl.schedules;
+       }
       }
     });
-  }
 
-}
+    modalInstance.result.then(function (selectedItem) {
+      $ctrl.selected = selectedItem;
+      console.log(selectedItem);
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
+  };
+
+};
+
+})();
