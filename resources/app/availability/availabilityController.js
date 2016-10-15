@@ -52,6 +52,13 @@ function availabilityController($uibModal, $log) {
     });
 
     modalInstance.result.then(function (selectedItem) {
+      console.clear();
+      // var startDateToTime = selectedItem.startsAt.setSeconds(39);
+      // var startDateToTime = selectedItem.startsAt.toTimeString().split(" ")[0];
+      // var endDateToTime = selectedItem.endsAt.setSeconds(39);
+      // var endDateToTime = selectedItem.endsAt.toTimeString().split(" ")[0];
+      // console.log(startDateToTime);
+      // console.log(endDateToTime);
       $ctrl.schedules[theDay].push({"start":selectedItem.startsAt.toTimeString().split(" ")[0],"end":selectedItem.endsAt.toTimeString().split(" ")[0]})
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());

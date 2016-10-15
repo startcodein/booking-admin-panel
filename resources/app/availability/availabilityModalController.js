@@ -6,10 +6,20 @@ angular
     .controller('availabilityModalController', availabilityModalController);
 
 function availabilityModalController($uibModalInstance, schedule) {
+  var dayStart = new Date();
+  dayStart.setHours(0);
+  dayStart.setMinutes(0),
+  dayStart.setSeconds(0);
+
+  var dayEnd = new Date();
+  dayEnd.setHours(23);
+  dayEnd.setMinutes(59),
+  dayEnd.setSeconds(0);
+
   this.theSchedule = {
     scheduleDay: schedule,
-    startsAt: "",
-    endsAt: ""
+    startsAt: dayStart,
+    endsAt: dayEnd
   };
 
   this.ok = function () {
