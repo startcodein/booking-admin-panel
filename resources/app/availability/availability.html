@@ -1,89 +1,76 @@
 <h2><i class="fa fa-tags"></i> Availability</h2>
-<h3>{{availtrl.calendarView}}</h3><!--  -->
-
-<div class="row form-group hide">
-  <div class="col-md-12">
-    <!-- <h3 class="text-center">{{calendarTitle}}</h3> -->
-  </div>
-
-  <div class="col-sm-6">
-    <div class="btn-group">
-      <button
-        class="btn btn-primary"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        decrement="availtrl.calendarView">
-        Previous
-      </button>
-      <button
-        class="btn btn-default"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        set-to-today>
-        Today
-      </button>
-      <button
-        class="btn btn-primary"
-        mwl-date-modifier
-        date="availtrl.viewDate"
-        increment="availtrl.calendarView">
-        Next
-      </button>
-    </div>
-  </div>
-
-  <div class="col-sm-6 text-right">
-    <div class="btn-group">
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'year'">Year</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'month'">Month</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'week'">Week</label>
-      <label class="btn btn-primary" ng-model="availtrl.calendarView" uib-btn-radio="'day'">Day</label>
-    </div>
-  </div>
-</div>
-
 <div class="row">
-<div class="col-sm-4">
-  <div
-    uib-timepicker
-    minute-step="5"
-    ng-model="availtrl.mytime"
-    ></div>
-    <!-- ng-change="changed()" -->
-</div>
-  <div class="col-sm-4">
-    <pre class="alert alert-info">Time is: {{availtrl.mytime}}</pre>
-  </div>
-  <div class="col-sm-4">
-    <button
-      type="button"
-      name="button"
-      class="btn btn-primary"
-      ng-click="availtrl.addEvent()"
-    >Add</button>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-sm-4">
-    <pre>{{availtrl.events | json}}</pre>
-  </div>
-  <div class="col-md-8">
-    <div class="box">
-
-      <mwl-calendar
-          view="availtrl.calendarView"
-          view-date="availtrl.viewDate"
-          events="availtrl.events"
-          view-title="calendarTitle"
-          on-timespan-click = "availtrl.clickOnEvent(calendarCell)"
-          >
-      </mwl-calendar>
-      <!-- slide-box-disabled="true" -->
-
-      <!-- on-view-change-click="false" -->
-      <!-- on-event-click="availtrl.clickOnEvent()" -->
-
+  <div class="col-sm-4" ng-repeat="(scheduleKeys, scheduleTimes) in availtrl.schedules">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <button type="button" class="btn btn-primary btn-xs pull-right" ng-click="availtrl.addTime(scheduleKeys)">
+          <i class="fa fa-plus"></i>
+        </button>
+        <h3 class="panel-title">{{scheduleKeys}}</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-hover" ng-if="scheduleTimes.length">
+          <thead>
+            <tr>
+              <th>Start</th>
+              <th>End</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="time in scheduleTimes">
+              <td>{{time.start}}</td>
+              <td>{{time.end}}</td>
+              <td>
+                <div class="btn-group btn-group-xs">
+                	<button type="button" class="btn btn-default" ng-click="availtrl.editTime(scheduleKeys, time)">
+                		<i class="fa fa-pencil"></i>
+                	</button>
+                	<button type="button" class="btn btn-default" ng-click="availtrl.deleteTime(scheduleKeys, time)">
+                		<i class="fa fa-trash-o"></i>
+                	</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title text-center" id="modal-title">{{$ctrl.theDay}}</h3>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <ul class="list-inline">
+        <li>
+          <label for="time-from">From</label>
+          <div
+            id="time-from"
+            uib-timepicker
+            minute-step="5"
+            ng-model="$ctrl.theSchedule.startsAt"
+            show-meridian="false"
+          ></div>
+        </li>
+        <li>
+          <label for="time-to">To</label>
+          <div
+            id="time-to"
+            uib-timepicker
+            minute-step="5"
+            ng-model="$ctrl.theSchedule.endsAt"
+            show-meridian="false"
+          ></div>
+        </li>
+      </ul>
+      <br><br>
+      <pre>{{ $ctrl.theSchedule | json}}</pre></b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    </div>
+</script>
