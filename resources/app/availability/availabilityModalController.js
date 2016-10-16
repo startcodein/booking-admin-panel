@@ -40,13 +40,6 @@ function availabilityModalController($uibModalInstance, scheduleDay, scheduleTim
     this.theSchedule.index = scheduleTime.index;
   }
 
-  // this.theSchedule = {
-  //   scheduleOn: scheduleDay,
-  //   startsAt: dayStart,
-  //   endsAt: dayEnd
-  // };
-
-
   this.ok = function () {
     $uibModalInstance.close(this.theSchedule);
   };
