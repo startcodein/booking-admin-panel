@@ -18,11 +18,29 @@ function availabilityController($uibModal, $log) {
   }
 
   this.editTime = function (theDay, theTime) {
-    console.clear();
-    console.log(theDay);
-    console.log(theTime);
-    console.log($ctrl.schedules[theDay]);
-    // this.schedules[theDay].push({"start":"08:00:00","end":"10:30:00"});
+    var theEditTime = angular.copy(theTime)
+    theEditTime.index = $ctrl.schedules[theDay].indexOf(theTime);
+    var modalInstance = $uibModal.open({
+      templateUrl: 'myModalContent.html',
+      controller: 'availabilityModalController',
+      controllerAs: '$ctrl',
+      size: 'sm',
+      resolve: {
+         scheduleDay: function() {
+             return theDay;
+         },
+         scheduleTime: function() {
+             return theEditTime;
+         }
+      }
+    });
+
+    modalInstance.result.then(function (selectedItem) {
+      $ctrl.schedules[selectedItem.scheduleOn][selectedItem.index] = {"start":selectedItem.startsAt.toTimeString().split(" ")[0],"end":selectedItem.endsAt.toTimeString().split(" ")[0]}
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+
   }
 
   // Delete scheduled time
@@ -32,34 +50,23 @@ function availabilityController($uibModal, $log) {
   }
 
   this.addTime = function (theDay) {
-    console.log($ctrl.schedules[theDay]);
     var modalInstance = $uibModal.open({
       templateUrl: 'myModalContent.html',
       controller: 'availabilityModalController',
       controllerAs: '$ctrl',
       size: 'sm',
       resolve: {
-        schedule: function() {
-          return theDay;
-        }
-        //  schedules: function() {
-            //  return $ctrl.schedules;
-        //  },
-        //  theDay: function() {
-            //  return theDay;
-        //  }
+         scheduleDay: function() {
+             return theDay;
+         },
+         scheduleTime: function() {
+             return;
+         }
       }
     });
 
     modalInstance.result.then(function (selectedItem) {
-      console.clear();
-      // var startDateToTime = selectedItem.startsAt.setSeconds(39);
-      // var startDateToTime = selectedItem.startsAt.toTimeString().split(" ")[0];
-      // var endDateToTime = selectedItem.endsAt.setSeconds(39);
-      // var endDateToTime = selectedItem.endsAt.toTimeString().split(" ")[0];
-      // console.log(startDateToTime);
-      // console.log(endDateToTime);
-      $ctrl.schedules[theDay].push({"start":selectedItem.startsAt.toTimeString().split(" ")[0],"end":selectedItem.endsAt.toTimeString().split(" ")[0]})
+      $ctrl.schedules[selectedItem.scheduleOn].push({"start":selectedItem.startsAt.toTimeString().split(" ")[0],"end":selectedItem.endsAt.toTimeString().split(" ")[0]})
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
