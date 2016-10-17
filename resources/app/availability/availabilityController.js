@@ -5,7 +5,12 @@ angular
     .module('app')
     .controller('availabilityController', availabilityController);
 
-function availabilityController($uibModal, $log) {
+function availabilityController($uibModal, $log, availabilityService) {
+
+  console.log("koooy");
+  console.log(availabilityService.getAvailability().getAvailabilityComplete());
+  console.log("keeey");
+
   var $ctrl = this;
   this.schedules = {
     "MON":[{"start":"08:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
