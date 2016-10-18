@@ -7,20 +7,9 @@ angular
 
 function availabilityController($uibModal, $log, availabilityService) {
 
-// availabilityService.getAvailability(function (data, status) {
-  // console.log(data);
-  // console.log(status);
-// });
-
-// console.log(availabilityService.getAvailability());
-
-availabilityService
-           .getAvailability()
-           .then(function (attributes) {
-             console.log(attributes);
-             console.log(attributes.data);
-           });
-
+  availabilityService.getAvailability().then(function (result) {
+    console.log(result);
+  })
 
   var $ctrl = this;
   this.schedules = {
