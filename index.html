@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Online Booking App</title>
+	<link href="/public/css/app.css" rel="stylesheet">
+</head>
+<body>
+	<header></header>
+  <div class="container-body">
+    <main class="container-fluid" ui-view></main>
+		<!-- Side Nav  -->
+		<nav class="side-nav" ng-include src="'public/side-nav.html'"></nav>
+    <aside class="right-list">
+    	<h1>Right Aside</h1>
+    </aside>
+  </div>
+  <footer>
+  	<h1>Footer</h1>
+  </footer>
+	<!-- bower:js -->
+	<script src="/bower_components/jquery/dist/jquery.js"></script>
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/bower_components/moment/moment.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/bower_components/angular-moment/angular-moment.js"></script>
+	<script src="/bower_components/angular-resource/angular-resource.js"></script>
+	<script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+	<script src="/bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="/bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.js"></script>
+	<!-- endinject -->
+	<!-- inject:js -->
+	<script src="/resources/app/module.js"></script>
+	<script src="/resources/app/settings/settingsController.js"></script>
+	<script src="/resources/app/dashboard/dashboardControl.js"></script>
+	<script src="/resources/app/booking/bookingController.js"></script>
+	<script src="/resources/app/config/route-config.js"></script>
+	<script src="/resources/app/availability/availabilityService.js"></script>
+	<script src="/resources/app/availability/availabilityModalController.js"></script>
+	<script src="/resources/app/availability/availabilityController.js"></script>
+	<!-- endinject -->
+</body>
+</html>

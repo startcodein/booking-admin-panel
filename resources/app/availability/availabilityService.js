@@ -15,15 +15,13 @@
       };
 
       function getAvailability() {
-          return $http.get('http://rest-service.guides.spring.io/greeting')
-          // return $http.get('http://booking.startcode.in/admin/daytime/1')
+          return $http.get('http://booking.startcode.in/admin/daytime/1')
               .then(getAvailabilityComplete)
               .catch(getAvailabilityFailed);
 
           function getAvailabilityComplete(response) {
-              // return response.data.results;
-              // return response.data;
-              return response;
+              return response.data;
+              // return response;
           }
 
           function getAvailabilityFailed(error) {

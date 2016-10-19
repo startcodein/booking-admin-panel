@@ -5,22 +5,36 @@ angular
     .module('app')
     .controller('availabilityController', availabilityController);
 
+// availabilityController.$inject = ['availabilityService', 'logger'];
+// availabilityController.$inject = ['availabilityService'];
+
 function availabilityController($uibModal, $log, availabilityService) {
 
-  availabilityService.getAvailability().then(function (result) {
-    console.log(result);
-  })
-
   var $ctrl = this;
-  this.schedules = {
-    "MON":[{"start":"08:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "TUE":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "WED":[{"start":"23:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "THU":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "FRI":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "SAT":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
-    "Sun":[{"start":"10:00:00","end":"10:30:00"},{"start":"11:00:00","end":"13:30:00"},{"start":"14:00:00","end":"16:00:00"}],
+  this.schedules = {}
+
+  activate();
+
+  function activate() {
+      return getAvailability().then(function() {
+          // logger.info('Activated Avengers View');
+          console.log('Activated Avengers View');
+      });
+      function getAvailability() {
+          return availabilityService.getAvailability()
+              .then(function(data) {
+                  $ctrl.schedules = data;
+                  return $ctrl.schedules;
+              });
+      }
   }
+// availabilityService
+//            .getAvailability()
+//            .then(function (attributes) {
+//              console.log(attributes);
+//              console.log(attributes.data);
+//            });
+
 
   this.editTime = function (theDay, theTime) {
     var theEditTime = angular.copy(theTime)
