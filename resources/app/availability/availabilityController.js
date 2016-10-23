@@ -28,6 +28,21 @@ function availabilityController($uibModal, $log, availabilityService) {
               });
       }
   }
+
+  function update(theData) {
+      return updateAvailability(theData).then(function() {
+          // logger.info('Activated Avengers View');
+          console.log('update Avengers View');
+      });
+      function updateAvailability() {
+          return availabilityService.updateAvailability(theData)
+              .then(function(data) {
+                console.log(data);
+                  // $ctrl.schedules = data;
+                  // return $ctrl.schedules;
+              });
+      }
+  }
 // availabilityService
 //            .getAvailability()
 //            .then(function (attributes) {
@@ -64,8 +79,15 @@ function availabilityController($uibModal, $log, availabilityService) {
 
   // Delete scheduled time
   this.deleteTime = function (theDay, theTime) {
-    var index = this.schedules[theDay].indexOf(theTime);
-    this.schedules[theDay].splice(index,1);
+    // var index = this.schedules[theDay].indexOf(theTime);
+    // this.schedules[theDay].splice(index,1);
+    // console.log(this.schedules);
+    // var scheduleStructure.weekly_schedule = this.schedules;
+
+    var scheduleStructure = {weekly_schedule:{}};
+    scheduleStructure.weekly_schedule = this.schedules;
+    // console.log(scheduleStructure);
+    update(scheduleStructure);
   }
 
   this.addTime = function (theDay) {
