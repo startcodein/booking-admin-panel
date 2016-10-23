@@ -3,5 +3,10 @@ angular
     .controller('bookingController', bookingController);
 
 function bookingController() {
-  console.log("booking controller");
+  var $ctrl = this;
+
+  $ctrl.calendarView = 'month';
+  $ctrl.viewDate = new Date();
+
+
 }
