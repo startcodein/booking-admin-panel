@@ -16,7 +16,7 @@
       };
 
       function getBooking() {
-          return $http.get('http://booking.startcode.in/admin/daytime/1')
+          return $http.get('http://booking.startcode.in/admin/current-schedule/1')
               .then(getBookingComplete)
               .catch(getBookingFailed);
 

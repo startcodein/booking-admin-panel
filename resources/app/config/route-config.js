@@ -26,5 +26,5 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'public/settings.html',
       controller: 'settingsController'
     })
-    $urlRouterProvider.otherwise('/availability');
+    $urlRouterProvider.otherwise('/booking');
 }
