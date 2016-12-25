@@ -1,16 +1,42 @@
 <h2><i class="fa fa-calendar"></i> Bookings</h2>
 
 <div class="row">
-  <div class="col-sm-12">
-    <h3 class="text-center">{{bookctrl.calendarTitle}}</h3>
+    <div class="col-sm-12">
+        <button
+            class="btn btn-link pull-left"
+            mwl-date-modifier
+            date="bookctrl.viewDate"
+            decrement="bookctrl.calendarView"
+            ng-click="bookctrl.cellIsOpen = false">
+            Previous
+        </button>
+        <button
+            class="btn btn-link pull-right"
+            mwl-date-modifier
+            date="bookctrl.viewDate"
+            increment="bookctrl.calendarView"
+            ng-click="bookctrl.cellIsOpen = false">
+            Next
+        </button>
+        <h3
+            class="text-center"
+            style="margin-top:0;"
+            mwl-date-modifier
+            date="bookctrl.viewDate"
+            set-to-today
+            ng-click="bookctrl.cellIsOpen = false"
+            >
+            {{bookctrl.calendarTitle}}
+        </h3>
+    </div>
 
-    <mwl-calendar
+    <div class="col-sm-12">
+        <mwl-calendar
         view="bookctrl.calendarView"
         view-date="bookctrl.viewDate"
         events="bookctrl.events"
         view-title="bookctrl.calendarTitle"
         on-view-change-click="false"
-    </mwl-calendar>
-
-  </div>
+        </mwl-calendar>
+    </div>
 </div>
