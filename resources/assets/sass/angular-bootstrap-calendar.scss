@@ -551,3 +551,8 @@ a.cal-event-week {
     border-bottom: 1px solid #e1e1e1;
   }
 }
+
+/* Hiding week info during mouseover */
+#cal-week-box {
+  display: none;
+}
