@@ -13,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="dayBooking in bookedctrl.dayBookings">
+            <tr ng-repeat="dayBooking in bookedctrl.dayBookings | orderBy:'dayBooking.date_time' track by $index">
                 <td>{{dayBooking.date_time | amDateFormat:'h:mm a'}}</td>
                 <td>{{dayBooking.patient.name}}</td>
                 <td><span am-time-ago="dayBooking.patient.dob" am-without-suffix="true"></span></td>
