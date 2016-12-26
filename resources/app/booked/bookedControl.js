@@ -1,7 +1,7 @@
 angular
     .module('app')
-    .controller('bookedController', SomeController);
+    .controller('bookedController', bookedController);
 
-function SomeController() {
+function bookedController() {
   console.log("booked day controller");
 }
