@@ -14,11 +14,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="dayBooking in bookedctrl.dayBookings">
-                <td>{{dayBooking.date_time}}</td>
+                <td>{{dayBooking.date_time | amDateFormat:'h:mm a'}}</td>
                 <td>{{dayBooking.patient.name}}</td>
-                <td>{{dayBooking.patient.dob}}</td>
+                <td><span am-time-ago="dayBooking.patient.dob" am-without-suffix="true"></span></td>
                 <td>{{dayBooking.patient.address}}</td>
-                <td>{{dayBooking.patient.created_at}}</td>
+                <td>{{dayBooking.patient.created_at | amDateFormat:'D MMMM YYYY'}}</td>
                 <td>
                     <div class="btn-group btn-group-xs">
                         <button type="button" class="btn btn-default" ng-click="editBooking();">
