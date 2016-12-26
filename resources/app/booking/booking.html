@@ -37,6 +37,9 @@
         events="bookctrl.events"
         view-title="bookctrl.calendarTitle"
         on-view-change-click="false"
+        cell-auto-open-disabled="true"
+        on-timespan-click="bookctrl.eventClicked(calendarCell)"
+        >
         </mwl-calendar>
     </div>
 </div>

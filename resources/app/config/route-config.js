@@ -21,6 +21,12 @@ function config($stateProvider, $urlRouterProvider) {
       controller: 'bookingController',
       controllerAs: 'bookctrl'
     })
+    .state('booked', {
+      url: '/booking/{bookedDay}',
+      templateUrl: 'public/day.html',
+      controller: 'bookedController',
+      controllerAs: 'bookedctrl'
+    })
     .state('settings', {
       url: '/settings',
       templateUrl: 'public/settings.html',
