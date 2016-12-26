@@ -1,2 +1,36 @@
-<h1>Booking on THE DAY</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero error fugit autem consequuntur nemo obcaecati explicabo architecto aspernatur odit, id, est quo, quaerat sunt ipsa laudantium maiores minus veritatis iusto!</p>
+<h2>{{bookedctrl.selectedDay}}</h2>
+
+<div class="box">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Location</th>
+                <th>Booked on</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dayBooking in bookedctrl.dayBookings">
+                <td>{{dayBooking.date_time}}</td>
+                <td>{{dayBooking.patient.name}}</td>
+                <td>{{dayBooking.patient.dob}}</td>
+                <td>{{dayBooking.patient.address}}</td>
+                <td>{{dayBooking.patient.created_at}}</td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <button type="button" class="btn btn-default" ng-click="editBooking();">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="deleteBooking();">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
