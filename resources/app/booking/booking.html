@@ -39,7 +39,25 @@
         on-view-change-click="false"
         cell-auto-open-disabled="true"
         on-timespan-click="bookctrl.eventClicked(calendarCell)"
+        custom-template-urls="{calendarMonthCell: 'customDayCell.html'}"
         >
         </mwl-calendar>
     </div>
 </div>
+
+
+<script id="customDayCell.html" type="text/ng-template">
+  <div class="cal-month-day">
+
+    <span
+      class="pull-right"
+      data-cal-date
+      ng-click="vm.calendarCtrl.dateClicked(day.date)"
+      ng-bind="day.label">
+    </span>
+    <small style="position: absolute; bottom: 10px; left: 5px">
+      <strong>{{day.events[0].remaining_appointments}}</strong> appointment left
+    </small>
+
+  </div>
+</script>
