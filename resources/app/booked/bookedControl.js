@@ -6,6 +6,7 @@ function bookedController(bookedService, $stateParams, day, $uibModal) {
   this.selectedDay = moment($stateParams.bookedDay).format("DD-MMMM-YYYY");
   this.dayBookings = day;
   this.open = function (userProfile) {
+
     var modalInstance = $uibModal.open({
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
@@ -20,10 +21,13 @@ function bookedController(bookedService, $stateParams, day, $uibModal) {
       controllerAs: '$ctrl',
       resolve: {
         userProfile: function () {
-        //   return $ctrl.items;
-        return userProfile;
+            return userProfile;
         }
       }
+    });
+
+    modalInstance.result.then(function () {
+    }, function () {
     });
   };
 }
