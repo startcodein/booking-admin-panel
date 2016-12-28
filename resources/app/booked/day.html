@@ -1,0 +1,82 @@
+<h2>{{bookedctrl.selectedDay}}</h2>
+
+<div class="box">
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Location</th>
+                <th>Booked on</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="dayBooking in bookedctrl.dayBookings | orderBy:'dayBooking.date_time' track by $index">
+                <td>{{dayBooking.date_time | amDateFormat:'h:mm a'}}</td>
+                <td><a href ng-click="bookedctrl.open(dayBooking.patient)">{{dayBooking.patient.name}}</a></td>
+                <td><span am-time-ago="dayBooking.patient.dob" am-without-suffix="true"></span></td>
+                <td>{{dayBooking.patient.address}}</td>
+                <td>{{dayBooking.patient.created_at | amDateFormat:'D MMMM YYYY'}}</td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <button type="button" class="btn btn-default" ng-click="editBooking();">
+                            <i class="fa fa-refresh"></i>
+                        </button>
+                        <button type="button" class="btn btn-default" ng-click="deleteBooking();">
+                            <i class="fa fa-trash-o"></i>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <button type="button" class="close" ng-click="$ctrl.cancel()"><span>×</span></button>
+            <h4 class="modal-title text-center" id="modal-title">Patient Profile</h4>
+        </div>
+        <div class="modal-body" id="modal-body">
+            <h4>{{$ctrl.userProfile.name}}</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Name:</td>
+                        <td>{{$ctrl.userProfile.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Date of birth</td>
+                        <td>{{$ctrl.userProfile.dob | amDateFormat:'DD-MM-YYYY'}} (<span am-time-ago="$ctrl.userProfile.dob" am-without-suffix="true"></span>)</td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>Male of Female</td>
+                    </tr>
+                    <tr>
+                        <td>Address</td>
+                        <td>{{$ctrl.userProfile.address}}</td>
+                    </tr>
+                    <tr>
+                        <td>Phone</td>
+                        <td><a href="tel:{{$ctrl.userProfile.phone}}">{{$ctrl.userProfile.phone}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><a href="mailto:{{$ctrl.userProfile.email}}">{{$ctrl.userProfile.email}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Registered on</td>
+                        <td>{{$ctrl.userProfile.created_at | amDateFormat:'dddd, D MMMM YYYY'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Update on</td>
+                        <td>{{$ctrl.userProfile.updated_at | amDateFormat:'dddd, D MMMM YYYY'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </script>
+
+</div>

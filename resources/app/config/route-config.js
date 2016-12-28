@@ -18,12 +18,24 @@ function config($stateProvider, $urlRouterProvider) {
     .state('booking', {
       url: '/booking',
       templateUrl: 'public/booking.html',
-      controller: 'bookingController'
+      controller: 'bookingController',
+      controllerAs: 'bookctrl'
+    })
+    .state('booked', {
+      url: '/booking/{bookedDay}',
+      templateUrl: 'public/day.html',
+      controller: 'bookedController',
+      controllerAs: 'bookedctrl',
+      resolve: {
+          day: function(bookedService, $stateParams) {
+              return bookedService.getbooked($stateParams.bookedDay);
+          }
+      }
     })
     .state('settings', {
       url: '/settings',
       templateUrl: 'public/settings.html',
       controller: 'settingsController'
     })
-    $urlRouterProvider.otherwise('/availability');
+    $urlRouterProvider.otherwise('/booking');
 }

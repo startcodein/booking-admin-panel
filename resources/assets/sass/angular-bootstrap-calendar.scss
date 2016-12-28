@@ -539,6 +539,8 @@ a.cal-event-week {
 }
 .cal-context {
   width: 100%;
+
+  background-color: $white;
 }
 @media (max-width: 991px) {
   .cal-year-box [class*="span"]:nth-child(2) {
@@ -548,4 +550,9 @@ a.cal-event-week {
   .cal-year-box [class*="span"]:nth-child(2) {
     border-bottom: 1px solid #e1e1e1;
   }
+}
+
+/* Hiding week info during mouseover */
+#cal-week-box {
+  display: none;
 }
