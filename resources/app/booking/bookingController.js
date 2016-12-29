@@ -12,10 +12,13 @@ function bookingController(bookingService, $state) {
 
   $ctrl.eventClicked = function(event) {
       console.clear();
-      console.log(event);
-      console.log(event.events[0].day);
-      var theDate = moment(event.events[0].day).format("YYYY-MM-DD");
-      $state.go('booked', {bookedDay:theDate});
+      if (event.events.length && event.events[0].is_holiday == 0) {
+          var theDate = moment(event.events[0].day).format("YYYY-MM-DD");
+        //   var theDate = moment(event.date).format("YYYY-MM-DD");
+          $state.go('booked', {bookedDay:theDate});
+      } else {
+          console.log("The day is holiday or NO event in this day");
+      }
   };
 
   this.events = [{}];
