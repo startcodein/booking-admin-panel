@@ -15,8 +15,9 @@
         //   updatebooked: updatebooked
       };
 
-      function getbooked() {
-          return $http.get('http://booking.startcode.in/admin/appointments/1/2016-11-27')
+      function getbooked(theDay) {
+          console.log(theDay);
+          return $http.get('http://booking.startcode.in/admin/appointments/1/'+theDay)
               .then(getbookedComplete)
               .catch(getbookedFailed);
 
