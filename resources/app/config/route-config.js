@@ -38,6 +38,12 @@ function config($stateProvider, $urlRouterProvider) {
         controller: 'scheduleController',
         controllerAs: 'schedulectrl'
     })
+    .state('scheduleday', {
+        url: '/schedule/{scheduleday}',
+        templateUrl: 'public/scheduleday.html',
+        controller: 'scheduleDayController',
+        controllerAs: 'scheduleDayCtrl'
+    })
     .state('settings', {
       url: '/settings',
       templateUrl: 'public/settings.html',

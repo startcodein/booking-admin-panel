@@ -1,1 +1,69 @@
 <h2><i class="fa fa-tag"></i> schedule</h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <button
+            class="btn btn-link pull-left"
+            mwl-date-modifier
+            date="schedulectrl.viewDate"
+            decrement="schedulectrl.calendarView"
+            ng-click="schedulectrl.cellIsOpen = false">
+            Previous
+        </button>
+        <button
+            class="btn btn-link pull-right"
+            mwl-date-modifier
+            date="schedulectrl.viewDate"
+            increment="schedulectrl.calendarView"
+            ng-click="schedulectrl.cellIsOpen = false">
+            Next
+        </button>
+        <h3
+            class="text-center"
+            style="margin-top:0;"
+            mwl-date-modifier
+            date="schedulectrl.viewDate"
+            set-to-today
+            ng-click="schedulectrl.cellIsOpen = false"
+            >
+            {{schedulectrl.calendarTitle}}
+        </h3>
+    </div>
+
+    <div class="col-sm-12">
+        <mwl-calendar
+        view="schedulectrl.calendarView"
+        view-date="schedulectrl.viewDate"
+        events="schedulectrl.events"
+        view-title="schedulectrl.calendarTitle"
+        on-view-change-click="false"
+        cell-auto-open-disabled="true"
+        on-timespan-click="schedulectrl.eventClicked(calendarCell)"
+        custom-template-urls="{calendarMonthCell: 'customScheduleCell.html'}"
+        >
+        </mwl-calendar>
+    </div>
+</div>
+
+
+<script id="customScheduleCell.html" type="text/ng-template">
+    <div class="cal-month-day custom-cell" ng-class="{'custom-cell-disabled': day.isPast}">
+    <!-- <div class="cal-month-day custom-cell" ng-class="{'custom-cell-disabled': day.events[0].is_holiday == 1 || day.isPast}"> -->
+    <!-- <div class="cal-month-day custom-cell" ng-class="{'custom-cell-disabled': day.events[0].is_holiday == 1 || day.events[0].total_appointments == day.events[0].remaining_appointments}"> -->
+    <!-- <pre>{{day.isPast | json}}</pre> -->
+        <h3
+            class="custom-cell-day"
+            data-cal-date
+            ng-click="vm.calendarCtrl.dateClicked(day.date)"
+            ng-bind="day.label">
+        </h3>
+        <div ng-if="!day.isPast">
+            <div ng-if="day.events[0].is_holiday == 0">
+                <h6 class="bg-success custom-cell-info">{{day.events[0].total_appointments}}</strong> appointments</h6>
+            </div>
+            <div ng-if="day.events[0].is_holiday == 1">
+                <h6 class="bg-info custom-cell-info">Holiday</h6>
+            </div>
+        </div>
+    </div>
+</script>
