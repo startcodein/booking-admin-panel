@@ -49,5 +49,5 @@ function config($stateProvider, $urlRouterProvider) {
       templateUrl: 'public/settings.html',
       controller: 'settingsController'
     })
-    $urlRouterProvider.otherwise('/booking');
+    $urlRouterProvider.otherwise('/schedule');
 }

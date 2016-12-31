@@ -15,7 +15,7 @@ function scheduleController(bookingService, $state) {
         console.log("koooy");
         console.log(event);
         // schedule
-        if (event.events.length && event.events[0].is_holiday == 0) {
+        if (event.events.length && event.events[0].is_holiday == 0 && event.isPast != true) {
             // var theDate = moment(event.events[0].day).format("YYYY-MM-DD");
             var theDate = moment(event.date).format("YYYY-MM-DD");
             console.log("hello mate");
