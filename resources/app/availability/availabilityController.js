@@ -1,6 +1,3 @@
-(function() {
-    'use strict';
-
 angular
     .module('app')
     .controller('availabilityController', availabilityController);
@@ -115,5 +112,3 @@ function availabilityController($uibModal, $log, availabilityService) {
   };
 
 };
-
-})();
