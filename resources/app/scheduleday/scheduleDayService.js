@@ -38,11 +38,13 @@
 
           function updateScheduleComplete(response) {
               // return response.data;
-              // return response;
-              console.log(response);
+            //   console.log(response);
+              return response;
           }
 
           function updateScheduleFailed(error) {
+              console.log(error);
+              return error;
               // logger.error('XHR Failed for updateSchedule.' + error.data);
           }
       }
