@@ -59,7 +59,9 @@
         </h3>
         <div ng-if="!day.isPast">
             <div ng-if="day.events[0].is_holiday == 0">
-                <h6 class="bg-success custom-cell-info">{{day.events[0].total_appointments}}</strong> appointments</h6>
+                <!-- <h6 class="bg-success custom-cell-info">Total {{day.events[0].total_appointments}}</strong></h6> -->
+                <h6 class="bg-warning custom-cell-info" ng-if="day.events[0].remaining_appointments != 0">{{day.events[0].remaining_appointments}} left</strong></h6>
+                <h6 class="bg-danger custom-cell-info" ng-if="day.events[0].remaining_appointments == 0">No appointment available</strong></h6>
             </div>
             <div ng-if="day.events[0].is_holiday == 1">
                 <h6 class="bg-info custom-cell-info">Holiday</h6>
