@@ -16,14 +16,11 @@ function scheduleDayController($stateParams, $state, scheduleService) {
 
         $ctrl.register.doc_id = 1;
         $ctrl.register.date = thisDay;
-        // $ctrl.register.db = {
-        //     day: null,
-        //     month: null,
-        //     year: null
-        // };
-
+        $ctrl.bookingStatus = "register";
+		$ctrl.bookedDateTime = "hello mate";
     } else {
         console.log("go back and choose valid date");
+        $ctrl.bookingStatus = "notavailable";
     }
 
     $ctrl.registerMe = function () {
@@ -48,10 +45,10 @@ function scheduleDayController($stateParams, $state, scheduleService) {
                     console.log(data);
                     console.log(data.status);
                     if (data.status == 200) {
-                        // alert("Successful");
-                        $state.go('schedule');
+                        $ctrl.bookingStatus = "confirmed";
+						$ctrl.bookedDateTime = data.data.date_time;
                     } else {
-                        alert("Error");
+                        $ctrl.bookingStatus = "notavailable";
                     }
                     // console.log("update schedule");
                     // $ctrl.schedules = data;
