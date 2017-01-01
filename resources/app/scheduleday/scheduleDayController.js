@@ -13,11 +13,10 @@ function scheduleDayController($stateParams, $state, scheduleService) {
 
     if (moment(thisDay, "YYYY-MM-DD", true).isValid()) {
         console.log("it is valid date");
-
         $ctrl.register.doc_id = 1;
         $ctrl.register.date = thisDay;
         $ctrl.bookingStatus = "register";
-		$ctrl.bookedDateTime = "hello mate";
+		$ctrl.bookedDateTime = "";
     } else {
         console.log("go back and choose valid date");
         $ctrl.bookingStatus = "notavailable";
@@ -26,7 +25,6 @@ function scheduleDayController($stateParams, $state, scheduleService) {
     $ctrl.registerMe = function () {
         $ctrl.register.dob = moment(new Date($ctrl.register.db.day + ' ' + $ctrl.register.db.month + ' ' + $ctrl.register.db.year)).utc().format("YYYY-MM-DD");
         // var kooy = moment(new Date($ctrl.register.db.day + ' ' + $ctrl.register.db.month + ' ' + $ctrl.register.db.year)).utc().format("YYYY-MM-DD");
-        // console.log(moment(kooy).isValid());
 
         delete $ctrl.register.db;
         console.log("from controller");

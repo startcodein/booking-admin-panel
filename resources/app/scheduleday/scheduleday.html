@@ -1,7 +1,7 @@
-<h2><i class="fa fa-file-text-o"></i> Register</h2>
 
-<div class="row">
-    <div class="col-sm-12">
+<div class="row" ng-switch="scheduleDayCtrl.bookingStatus">
+    <div class="col-sm-12" ng-switch-when="register">
+        <h2><i class="fa fa-file-text-o"></i> Register</h2>
         <form class="form-horizontal box" ng-submit="scheduleDayCtrl.registerMe()">
             <input type="hidden" class="form-control" placeholder="Name" ng-model="scheduleDayCtrl.register.doc_id">
             <div class="form-group">
@@ -88,7 +88,19 @@
             </div>
         </form>
     </div>
-    <div class="col-sm-6">
-        <pre>{{ scheduleDayCtrl.register | json}}</pre>
+    <div class="col-sm-12" ng-switch-when="confirmed">
+        <h2><i class="fa fa-check"></i> Appointment Confirmed</h2>
+        <div class="box text-center">
+            <h4><u>Appointment details are:</u></h4>
+            <h4>Date: {{scheduleDayCtrl.bookedDateTime | amDateFormat:'D MMMM YYYY, dddd'}}</h4>
+            <h4>Time: {{scheduleDayCtrl.bookedDateTime | amDateFormat:'h:mm A'}}</h4>
+        </div>
+    </div>
+    <div class="col-sm-12" ng-switch-when="notavailable">
+        <h2><i class="fa fa-close"></i> No appointment on the day</h2>
+        <div class="box">
+            <p>There is no appointment available on the selected day</p>
+            <p>Please choose another day <a ui-sref='schedule'>back</a>.</p>
+        </div>
     </div>
 </div>
