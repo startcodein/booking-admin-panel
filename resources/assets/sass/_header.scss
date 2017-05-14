@@ -1,5 +1,26 @@
 header{
-  min-height: 46px;
-	background-color: $brand-primary;
-	color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $brand-primary;
+    color: $white;
+
+    &.navbar{
+        border: none;
+        &:before,
+        &:after{
+            content: none;
+        }
+    }
+
+    .dropdown-toggle{
+        color: $white;
+    }
+}
+
+.toggle-button{
+    border: none;
+    border-radius: 0;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
