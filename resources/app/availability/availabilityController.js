@@ -76,9 +76,9 @@ function availabilityController($uibModal, $log, availabilityService) {
 
   // Delete scheduled time
   this.deleteTime = function (theDay, theTime) {
-    // var index = this.schedules[theDay].indexOf(theTime);
-    // this.schedules[theDay].splice(index,1);
-    // console.log(this.schedules);
+    var index = this.schedules[theDay].indexOf(theTime);
+    this.schedules[theDay].splice(index,1);
+    console.log(this.schedules);
     // var scheduleStructure.weekly_schedule = this.schedules;
 
     var scheduleStructure = {weekly_schedule:{}};

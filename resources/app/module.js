@@ -3,5 +3,6 @@ angular
       'mwl.calendar',
       'ui.router',
       'ui.bootstrap',
-      'angularMoment'
+      'angularMoment',
+      'ngConfirm'
     ]);
